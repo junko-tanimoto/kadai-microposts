@@ -9,13 +9,33 @@
         <div>
           <p class="mb-0"><%= micropost.content %></p>
         </div>
-        <div>
+    <div>
           <% if current_user == micropost.user %>
-            <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Delete', micropost_path(micropost.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
-        </div>
-      </div>
-    </li>
-  <% end %>
+    
+        <% if current_user.likes.include?(micropost) %>     
+          <%= form_with(model: @favorite, url: favorite_path(id: micropost.id), local: true, method: :delete) do |f| %>
+          <%= f.hidden_field :micropost_id, value: micropost.id %>
+          <%= f.submit 'いいね！Delete' %>
+        <% end %>
+      
+      <% else %>
+        <%= form_with(model: @favorite, url: favorites_path, local: true) do |f| %>
+          <%= f.hidden_field :micropost_id, value: micropost.id %>
+          <%= f.submit 'いいね！' %>
+        <% end %>
+      <% end %>      
+    </div>
+  </div>
+<% end %>
   <%= paginate microposts %>
 </ul>
+  
+
+  
+
+
+
+
+

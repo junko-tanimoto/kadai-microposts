@@ -1,5 +1,8 @@
 class FavoritesController < ApplicationController
   
+  #def show
+    #@favorite = Favorite.find(params[:id])
+  #end
   
   def create
     #unless current_user.likes.include?(clicked_micropost)

@@ -33,6 +33,7 @@ class User < ApplicationRecord
     Micropost.where(user_id: self.following_ids + [self.id])
   end
   
+  
   def favorite_this(clicked_micropost)
     self.favorites.find_or_create_by(micropost: clicked_micropost)
   end

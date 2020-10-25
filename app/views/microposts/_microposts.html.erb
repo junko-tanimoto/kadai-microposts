@@ -13,11 +13,11 @@
           <% if current_user == micropost.user %>
           <%= link_to 'Delete', micropost_path(micropost.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
-    
+      
         <% if current_user.likes.include?(micropost) %>     
           <%= form_with(model: @favorite, url: favorite_path(id: micropost.id), local: true, method: :delete) do |f| %>
           <%= f.hidden_field :micropost_id, value: micropost.id %>
-          <%= f.submit 'いいね！Delete' %>
+          <%= f.submit 'いいね！済み' %>
         <% end %>
       
       <% else %>
